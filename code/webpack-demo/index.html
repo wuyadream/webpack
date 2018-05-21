@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+  <h1>hello,webpack</h1>
+  <!--<p>注释</p>-->
+  <%= htmlWebpackPlugin.options.date %>
+
+  <!-- inline写法 -->
+  <script type="text/javascript">
+    <%=
+      compilation.assets[htmlWebpackPlugin.files.chunks.main.entry.substr( htmlWebpackPlugin.files.publicPath.length)].source()
+      %>
+  </script>
+
+  <%= htmlWebpackPlugin.files.chunks.main.entry %>
+
+  <% for(var k in htmlWebpackPlugin.files.chunks) %>
+  <% if(k !== 'main') {%>
+  <script src="<%= htmlWebpackPlugin.files.chunks[k].entry %>"></script>
+  <% }%>
+  </body>
+</html>
